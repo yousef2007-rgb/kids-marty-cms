@@ -9,7 +9,7 @@ export default function menuIcon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_1_4)">
+      <g clipPath="url(#clip0_1_4)">
         <path
           d="M3.5 21H24.5V18.6667H3.5V21ZM3.5 15.1667H24.5V12.8333H3.5V15.1667ZM3.5 7V9.33333H24.5V7H3.5Z"
           fill="black"

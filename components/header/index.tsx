@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function index() {
   return (
-    <header className="flex justify-between items-center px-5 py-5 max-w-5xl mx-auto  shadow-md">
+    <header className="flex justify-between items-center px-5 py-5 max-w-5xl mx-auto w-screen">
       {/* <h1 className="font-bold text-3xl">CMS</h1> */}
       <img
         className="w-16"
