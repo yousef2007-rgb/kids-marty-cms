@@ -8,18 +8,6 @@ interface FormData {
   password: string;
 }
 
-const signin = async (email: string, password: string) => {
-  const data = await axios.post(
-    "http://localhost:8000/api/auth/?isAdmin=true",
-    {
-      email,
-      password,
-    }
-  );
-
-  return data;
-};
-
 export default function index() {
   const router = useRouter();
 
@@ -40,9 +28,9 @@ export default function index() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    const payload: any = { email: formData.email, password: formData.password };
     try {
-      const res = await signin(formData.email, formData.password);
-      window.sessionStorage.setItem("jwt", res.data);
+      await axios.post("/api/auth/login", payload);
       router.push("/");
     } catch (err: any) {
       setErrorMessage(err.response.data);
@@ -52,13 +40,13 @@ export default function index() {
   return (
     <>
       <form
-        className="p-5 rounded-md shadow-2xl bg-white max-w-xs w-full mx-2"
+        className="p-5 rounded-md  shadow-2xl bg-white max-w-xs w-full mx-2"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col text-md font-semibold my-2 max-w-xs w-full mx-2">
           <label htmlFor="email">Email:</label>
           <input
-            className="outline-none rounded-md my-2 p-2 border"
+            className="outline-none rounded-md  my-2 p-2 "
             type="email"
             name="email"
             id="email"
@@ -70,7 +58,7 @@ export default function index() {
         <div className="flex flex-col text-md font-semibold my-2">
           <label htmlFor="password">Password:</label>
           <input
-            className="outline-none rounded-md my-2 p-2 border"
+            className="outline-none rounded-md  my-2 p-2 "
             type="password"
             name="password"
             id="password"
@@ -81,14 +69,14 @@ export default function index() {
         </div>
 
         <button
-          className=" p-2 capitalize text-center w-full bg-primary rounded-md text-white font-semibold border-2 border-primary hover:bg-white hover:text-primary"
+          className=" p-2 capitalize text-center w-full bg-primary rounded-md  text-white font-semibold -2 -primary hover:bg-white hover:text-primary"
           type="submit"
         >
           sign in
         </button>
       </form>
       {errorMessage ? (
-        <div className="w-full bg-red-400 text-white p-2 rounded-md my-2 max-w-xs mx-2">
+        <div className="w-full bg-red-400 text-white p-2 rounded-md  my-2 max-w-xs mx-2">
           {errorMessage}
         </div>
       ) : (

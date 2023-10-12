@@ -7,10 +7,13 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    // fontFamily: {
+    //   sans: ["Montserrat, sans-serif"],
+    // },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-page":"linear-gradient(180deg, #9DEEF3 0%, rgba(255, 255, 255, 0.00) 100%)",
+        "gradient-page": "linear-gradient(180deg, #9DEEF3 0%, #eee 100%)",
         hero: "url('/assets/images/hero.jpeg')",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
