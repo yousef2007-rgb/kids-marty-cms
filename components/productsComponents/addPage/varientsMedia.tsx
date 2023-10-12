@@ -5,13 +5,13 @@ import { Props } from './propsType'
 import axios from 'axios';
 import AdditionalMedia from "./varientsAdditionalMedia"
 
-export const media: FC<Props> = ({ formData,index, setFormData, setVarient, varientData, defaultImage }) => {
+export const media: FC<Props> = ({ formData, index, setFormData, setVarient, varientData, defaultImage }) => {
     const [selectedImage, setSelectedImage] = useState<any | null>(defaultImage ? defaultImage : null);
     const [extension, setExtension] = useState(null)
     function readFile(file: any) {
         return new Promise(resolve => {
             let myReader = new FileReader();
-            myReader.onloadend = function(e) {
+            myReader.onloadend = function (e) {
                 resolve(myReader.result);
             };
             myReader.readAsDataURL(file);
@@ -28,17 +28,17 @@ export const media: FC<Props> = ({ formData,index, setFormData, setVarient, vari
     const handleImageUploadReq = async (e: any) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:8000/api/image", {
+            const res = await axios.post(process.env.URL + "/api/image", {
                 imageData: selectedImage,
                 extension: extension
             })
             const imageUrl = res.data;
-            if (defaultImage!=undefined && index!=undefined && formData.varients!=undefined) {
+            if (defaultImage != undefined && index != undefined && formData.varients != undefined) {
                 const newArray = formData.varients?.slice();
-                newArray?.splice(index,1,{ ...formData.varients[index], imageUrl: imageUrl })
-                setFormData({ ...formData,varients:newArray})
+                newArray?.splice(index, 1, { ...formData.varients[index], imageUrl: imageUrl })
+                setFormData({ ...formData, varients: newArray })
             } else {
-                setVarient({...varientData, imageUrl: imageUrl })
+                setVarient({ ...varientData, imageUrl: imageUrl })
             }
             alert("uploaded successfully")
         } catch (err) {

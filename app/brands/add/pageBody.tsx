@@ -7,24 +7,21 @@ import Pricing from '@/components/productsComponents/addPage/pricing';
 import Options from '@/components/productsComponents/addPage/options';
 import Varients from "@/components/productsComponents/addPage/varients";
 import { media as Media } from '@/components/productsComponents/addPage/media';
-import { Category, Brand } from '@/types/productsTypes';
+import { Brand } from '@/types/productsTypes';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-interface Props {
-    category: Category;
-}
 
-const ProductForm: FC<Props> = ({ category }) => {
+const ProductForm: FC = ({ }) => {
     const router = useRouter();
-    const [formData, setFormData] = useState<Category>({
-        title: category.title,
-        discription: category.discription,
-        title_ar: category.title_ar,
-        discription_ar: category.discription_ar,
-        keywords: category.keywords,
-        imageUrl: category.imageUrl,
-        lable: category.lable
+    const [formData, setFormData] = useState<Brand>({
+        title: "",
+        discription: "",
+        title_ar: "",
+        discription_ar: "",
+        keywords: "",
+        imageUrl: "",
+        lable: ""
     });
 
 
@@ -33,28 +30,27 @@ const ProductForm: FC<Props> = ({ category }) => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleFormSubmit = (_id: string | undefined) => async (e: any) => {
+    const handleFormSubmit = async (e: any) => {
         e.preventDefault();
         const res = await axios.get("/api/auth/login")
         const token: string = res.data;
-        axios.put(`${process.env.URL}/api/categories/${_id}`, formData, {
+        axios.post(`${process.env.URL}/api/brands/`, formData, {
             headers: {
                 "x-web-token": token
             }
-        }).then(() => router.push("/categories"));
-
+        }).then(() => router.push("/brands"));
     }
 
     return (
-        <form onSubmit={handleFormSubmit(category?._id)} className=" mx-auto [&>*]:outline-none w-full flex flex-col">
+        <form onSubmit={handleFormSubmit} className=" mx-auto [&>*]:outline-none w-full flex flex-col">
             <ProductDetails formData={formData} handleInputChange={handleInputChange} />
             <ProductDetailsAr formData={formData} handleInputChange={handleInputChange} />
-            <Media formData={formData} setFormData={setFormData} defaultImage={`${process.env.URL}/${formData.imageUrl}`} noAdditionalMedia={true}/> 
+            <Media formData={formData} setFormData={setFormData} noAdditionalMedia={true} />
             <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-                save
+                submit
             </button>
         </form>
     );

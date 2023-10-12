@@ -3,13 +3,13 @@ import React, { FC, useState } from "react";
 import CheckIcon from "@/public/assets/icons/checkIcon";
 import CloseIcon from "@/public/assets/icons/closeIcon";
 import AddIcon from "@/public/assets/icons/addIcon";
-import { Product } from "@/types/productsTypes";
+import { Brand } from "@/types/productsTypes";
 import SearchIcon from "@/public/assets/icons/searchIcon";
 import DropdownMenu from "./dropDown";
 import Link from "next/link";
 
 interface Props {
-    data: Product[];
+    data: Brand[];
 }
 
 const pageBody: FC<Props> = ({ data }) => {
@@ -17,14 +17,13 @@ const pageBody: FC<Props> = ({ data }) => {
     const handleChange = (event: any) => {
         setInputValue(event.target.value);
     };
-    const res = data.filter((product: Product, index: number) => {
+    const res = data.filter((product: Brand, index: number) => {
         return inputValue == ""
             ? true
             : product.title.toLowerCase().includes(inputValue.toLowerCase()) ||
             product.title_ar.includes(inputValue) ||
             product.discription.toLowerCase().includes(inputValue.toLowerCase()) ||
-            product.discription_ar?.includes(inputValue) ||
-            product.lable.toLowerCase().includes(inputValue.toLowerCase());
+            product.discription_ar?.includes(inputValue)
     });
     console.log(res)
     return (
@@ -33,7 +32,7 @@ const pageBody: FC<Props> = ({ data }) => {
                 <div className="rounded-md shadow-md bg-white flex items-center flex-1 px-5">
                     <input
                         className="w-full text-gray-800 rounded-md  outline-none  text-base font-semibold  py-[12px] flex-1"
-                        placeholder="Search for a Product"
+                        placeholder="Search for a Brand"
                         type="text"
                         onChange={handleChange}
                         name=""
@@ -42,14 +41,14 @@ const pageBody: FC<Props> = ({ data }) => {
                     <SearchIcon />
                 </div>
                 <Link
-                    href={"/products/add"}
+                    href={"/brands/add"}
                     className="rounded-md   shadow-md bg-white flex items-center px-5 ml-2"
                 >
                     <AddIcon />
                 </Link>
             </div>
             <div className="rounded-md  shadow-md bg-white my-5">
-                {res.map((product: Product, index: number) =>
+                {res.map((product: Brand, index: number) =>
                     res.length != 0 ? (
                         <div className=" p-5 flex items-center" key={index}>
                             <img
@@ -57,15 +56,11 @@ const pageBody: FC<Props> = ({ data }) => {
                                 src={`${process.env.URL}/${product.imageUrl}`}
                                 alt={product.title}
                             />
-                            <div className="flex flex-col mx-5">
+                            <div className="flex flex-col ml-5 mr-auto">
                                 <h1 className="font-semibold">{product.title}</h1>
-                                <p className="text-gray-600">Label: {product.lable}</p>
                             </div>
 
-                            <div className="ml-auto flex">
-                                {product.isPublished ? <CheckIcon /> : <CloseIcon />}
-                            </div>
-                            <DropdownMenu isPublished={product.isPublished} _id={product?._id} />
+                            <DropdownMenu _id={product?._id} />
                         </div>
                     ) : (
                         ""

@@ -27,7 +27,7 @@ interface User {
 const getData = async () => {
   const token: any = cookies().get("token");
 
-  const data = await axios.get("http://localhost:8000/api/users/me", {
+  const data = await axios.get(process.env.URL + "/api/users/me", {
     headers: {
       "x-web-token": token.value,
     },
@@ -42,12 +42,12 @@ export default async function Home() {
 
   return (
     <main className="flex bg-white rounded-md p-5 font-semibold flex-col flex-1 w-full">
-          <p className="my-2 font-sans">Name: {data?.username}</p>
-          <p className="my-2">Email: {data?.email}</p>
-          <p className="my-2">city: {data?.city}</p>
-          <p className="my-2">location: {data?.location}</p>
-          <p className="my-2">phone: {data?.phone}</p>
-          <Signout />
+      <p className="my-2 font-sans">Name: {data?.username}</p>
+      <p className="my-2">Email: {data?.email}</p>
+      <p className="my-2">city: {data?.city}</p>
+      <p className="my-2">location: {data?.location}</p>
+      <p className="my-2">phone: {data?.phone}</p>
+      <Signout />
     </main>
   );
 }

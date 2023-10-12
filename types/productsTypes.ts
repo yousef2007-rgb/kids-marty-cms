@@ -8,23 +8,51 @@ export interface Varient {
 }
 
 export interface Category {
-    _id: string,
+    _id?: string,
     title: string;
     discription: string;
     title_ar: string;
     discription_ar?: string;
     keywords?: string;
+    lable:string;
     imageUrl: string;
 }
 
 export interface Brand {
-    _id: string,
+    _id?: string,
     title: string;
     discription: string;
     title_ar: string;
     discription_ar?: string;
-    keywords?: string[];
+    keywords?: string;
+    lable:string;
     imageUrl: string;
+}
+
+export interface Item {
+    product_id: string;
+    imageUrl?: string;
+    title: string;
+    price: number;
+    quantity: number;
+}
+
+
+export interface User  {
+    username: string;
+    email: string;
+    password: string;
+    phone?: string;
+    city: "Amman" | "Zarqa" | "Irbid" | "Jerash" | "Aqaba" | "Ajloun" | "Alsalt" | "Almafraq" | "Altafila" | "Alkarek" | "Maan" | "Madaba" | "Alagwar";
+    location: string;
+    age?: number;
+    isAdmin: boolean;
+    _id: string;
+}
+export interface Order {
+    _id:string;
+    user: User;
+    products: Item[];
 }
 
 export interface Product {

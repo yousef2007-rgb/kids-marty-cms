@@ -11,7 +11,7 @@ const media: FC<Props> = ({ formData, index, varientData, setFormData, setVarien
     function readFile(file: any) {
         return new Promise(resolve => {
             let myReader = new FileReader();
-            myReader.onloadend = function(e) {
+            myReader.onloadend = function (e) {
                 resolve(myReader.result);
             };
             myReader.readAsDataURL(file);
@@ -28,16 +28,16 @@ const media: FC<Props> = ({ formData, index, varientData, setFormData, setVarien
     const handleImageUploadReq = async (e: any) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:8000/api/image", {
+            const res = await axios.post(process.env.URL + "/api/image", {
                 imageData: selectedImage,
                 extension: extension
             })
             const imageUrl = res.data;
 
-            if (defaultImage!=undefined && index!=undefined && formData.varients!=undefined) {
+            if (defaultImage != undefined && index != undefined && formData.varients != undefined) {
                 const newArray = formData.varients?.slice();
-                newArray?.splice(index,1,{ ...formData.varients[index], imagesUrls: [...formData.varients[index].imagesUrls ,imageUrl] })
-                setFormData({ ...formData, varients:newArray}) 
+                newArray?.splice(index, 1, { ...formData.varients[index], imagesUrls: [...formData.varients[index].imagesUrls, imageUrl] })
+                setFormData({ ...formData, varients: newArray })
             } else {
                 setVarient({ ...varientData, imagesUrls: varientData?.imagesUrls ? [...varientData.imagesUrls, imageUrl] : [imageUrl] })
             }
@@ -51,12 +51,12 @@ const media: FC<Props> = ({ formData, index, varientData, setFormData, setVarien
 
     const handleImageDelete = (i: number) => (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if (defaultImage!=undefined && formData.varients !=undefined && index!=undefined) {
+        if (defaultImage != undefined && formData.varients != undefined && index != undefined) {
             const newArray = formData?.varients[index]?.imagesUrls?.slice();
             newArray?.splice(i, 1);
             const newArray2 = formData?.varients?.slice();
-            newArray2?.splice(index, 1, {...formData.varients[index], imagesUrls:newArray});
-            setFormData({ ...formData, varients: newArray2})
+            newArray2?.splice(index, 1, { ...formData.varients[index], imagesUrls: newArray });
+            setFormData({ ...formData, varients: newArray2 })
         } else {
             const newArray = varientData?.imagesUrls?.slice();
             newArray?.splice(i, 1);
@@ -75,12 +75,12 @@ const media: FC<Props> = ({ formData, index, varientData, setFormData, setVarien
                 {defaultImage && index != undefined && formData.varients != undefined ?
                     formData.varients[index]?.imagesUrls?.map((imageUrl: string, i: number) => (
                         <div className=' rounded-md m-2 relative w-fit bg-gray-100'>
-                            <img className="max-w-[100px] rounded-md" src={`http://localhost:8000/${imageUrl}`} />
+                            <img className="max-w-[100px] rounded-md" src={`${process.env.URL}/${imageUrl}`} />
                             <button className='ml-auto absolute top-0 right-0' onClick={handleImageDelete(i)}> <TrashIcon /> </button>
                         </div>))
                     : varientData?.imagesUrls?.map((imageUrl, index) => (
                         <div className=' rounded-md m-2 relative w-fit bg-gray-100'>
-                            <img className="max-w-[100px] rounded-md" src={`http://localhost:8000/${imageUrl}`} />
+                            <img className="max-w-[100px] rounded-md" src={`${process.env.URL}/${imageUrl}`} />
                             <button className='ml-auto absolute top-0 right-0' onClick={handleImageDelete(index)}> <TrashIcon /> </button>
                         </div>))}
 

@@ -7,7 +7,7 @@ export async function POST(request: Request) {
 
     try {
         const token: any = await axios.post(
-            `http://localhost:8000/api/auth/?isAdmin=true`,
+            `${process.env.URL}/api/auth/?isAdmin=true`,
             { email: email, password: password }
         );
         console.log(token);

@@ -7,36 +7,24 @@ import Pricing from '@/components/productsComponents/addPage/pricing';
 import Options from '@/components/productsComponents/addPage/options';
 import Varients from "@/components/productsComponents/addPage/varients";
 import { media as Media } from '@/components/productsComponents/addPage/media';
-import { Category, Brand } from '@/types/productsTypes';
+import { Brand, Brand } from '@/types/productsTypes';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 interface Props {
-    categories: Category[];
-    brands: Brand[];
-    product: Product;
+    brand: Brand;
 }
 
-const ProductForm: FC<Props> = ({ categories, brands, product }) => {
+const ProductForm: FC<Props> = ({ brand }) => {
     const router = useRouter();
-    const [formData, setFormData] = useState<Product>({
-        title: product.title,
-        discription: product.discription,
-        lable: product.lable,
-        keywords: product.keywords,
-        title_ar: product.title_ar,
-        discription_ar: product.discription_ar,
-        imagesUrls: product.imagesUrls,
-        online_price: product.online_price,
-        wholesale_price: product.wholesale_price,
-        discount: product.discount,
-        imageUrl: product.imageUrl,
-        category: product.category,
-        brand: product.brand,
-        isPublished: product.isPublished,
-        ageRange: product.ageRange,
-        varients: product.varients,
-        dimensions: product.dimensions,
+    const [formData, setFormData] = useState<Brand>({
+        title: brand.title,
+        discription: brand.discription,
+        title_ar: brand.title_ar,
+        discription_ar: brand.discription_ar,
+        keywords: brand.keywords,
+        imageUrl: brand.imageUrl,
+        lable: brand.lable
     });
 
 
@@ -49,22 +37,19 @@ const ProductForm: FC<Props> = ({ categories, brands, product }) => {
         e.preventDefault();
         const res = await axios.get("/api/auth/login")
         const token: string = res.data;
-        axios.put(`${process.env.URL}/api/products/${_id}`, formData, {
+        axios.put(`${process.env.URL}/api/brands/${_id}`, formData, {
             headers: {
                 "x-web-token": token
             }
-        }).then(() => router.push("/products"));
+        }).then(() => router.push("/brands"));
 
     }
 
     return (
-        <form onSubmit={handleFormSubmit(product?._id)} className=" mx-auto [&>*]:outline-none w-full flex flex-col">
+        <form onSubmit={handleFormSubmit(brand?._id)} className=" mx-auto [&>*]:outline-none w-full flex flex-col">
             <ProductDetails formData={formData} handleInputChange={handleInputChange} />
             <ProductDetailsAr formData={formData} handleInputChange={handleInputChange} />
-            <Pricing formData={formData} handleInputChange={handleInputChange} />
-            <Options formData={formData} handleInputChange={handleInputChange} setFormData={setFormData} data={{ categories: categories, brands: brands }} />
-            <Varients formData={formData} setFormData={setFormData} />
-            <Media formData={formData} setFormData={setFormData} defaultImage={`${process.env.URL}/${formData.imageUrl}`} />
+            <Media formData={formData} setFormData={setFormData} defaultImage={`${process.env.URL}/${formData.imageUrl}`} noAdditionalMedia={true}/> 
             <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

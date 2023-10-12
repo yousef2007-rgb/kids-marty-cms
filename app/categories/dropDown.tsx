@@ -1,12 +1,15 @@
 "use client";
+import axios from "axios";
 import Link from "next/link";
 import React, { FC, useState } from "react";
+import {useRouter} from "next/navigation";
 
 interface Props {
     _id: string | undefined;
 }
 
-const DropdownMenu: FC<Props> = ({  _id }) => {
+const DropdownMenu: FC<Props> = ({ _id }) => {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -18,9 +21,22 @@ const DropdownMenu: FC<Props> = ({  _id }) => {
         alert("Edit clicked");
     };
 
-    const handleDelete = () => {
-        // Add your delete logic here
-        alert("Delete clicked");
+    const handleDelete = async () => {
+        const result = confirm("are you sure you want to delete this category");
+        if (result) {
+            try {
+                const res = await axios.get("/api/auth/login")
+                const token: string = res.data;
+                const data = await axios.delete(`${process.env.URL}/api/categories/${_id}`, {
+                    headers: {
+                        "x-web-token": token
+                    }
+                });
+                if(data) router.refresh();
+            } catch (err) {
+                alert("something went wrong can't delete category")
+            }
+        }
     };
     const handlePublish = () => {
         // Add your delete logic here

@@ -1,16 +1,14 @@
 "use client";
-import Link from "next/link";
-import { config } from "process";
-import React, { FC, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import React, { FC, useState } from "react";
+import {useRouter} from "next/navigation";
 
 interface Props {
-    isPublished: boolean;
     _id: string | undefined;
 }
 
-const DropdownMenu: FC<Props> = ({ isPublished, _id }) => {
+const DropdownMenu: FC<Props> = ({ _id }) => {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -18,24 +16,36 @@ const DropdownMenu: FC<Props> = ({ isPublished, _id }) => {
         setIsOpen(!isOpen);
     };
 
+    const handleEdit = () => {
+        // Add your edit logic here
+        alert("Edit clicked");
+    };
 
     const handleDelete = async () => {
-        const result = confirm("are you sure you want to delete this product")
+        const result = confirm("are you sure you want to delete this brand");
         if (result) {
             try {
                 const res = await axios.get("/api/auth/login")
                 const token: string = res.data;
-                const data = await axios.delete(`${process.env.URL}/api/products/${_id}`, {
+                const data = await axios.delete(`${process.env.URL}/api/brands/${_id}`, {
                     headers: {
                         "x-web-token": token
                     }
-                })
+                });
                 if(data) router.refresh();
-            } catch(err){
-                alert("unable to delete something went wrong")
+            } catch (err) {
+                alert("something went wrong can't delete brand")
             }
         }
+    };
+    const handlePublish = () => {
+        // Add your delete logic here
+        alert("Delete clicked");
+    };
 
+    const handleUnpublish = () => {
+        // Add your delete logic here
+        alert("Delete clicked");
     };
     return (
         <div className="relative ml-5">
@@ -61,7 +71,7 @@ const DropdownMenu: FC<Props> = ({ isPublished, _id }) => {
             {isOpen && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 py-2 bg-white border border-gray-300 rounded shadow-lg z-30 text-left">
                     <Link
-                        href={`/products/edit/${_id}`}
+                        href={`/brands/edit/${_id}`}
                         className="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full"
                     >
                         Edit

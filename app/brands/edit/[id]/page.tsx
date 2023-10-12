@@ -3,9 +3,9 @@ import PageBody from './pageBody'
 import axios from "axios"
 
 const getData = async (_id: string) => {
-    const category = await axios.get(`${process.env.URL}/api/categories/${_id}`)
+    const brand = await axios.get(`${process.env.URL}/api/brands/${_id}`)
     return {
-        category: category.data
+        brand: brand.data
     };
 }
 
@@ -13,7 +13,7 @@ const page = async ({ params: { id }, }: { params: { id: string } }) => {
     const data = await getData(id);
     console.log(data);
     return (
-        <PageBody category={data.category} />
+        <PageBody brand={data.brand} />
     )
 }
 export default page;

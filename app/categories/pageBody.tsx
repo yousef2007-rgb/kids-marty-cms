@@ -41,7 +41,7 @@ const pageBody: FC<Props> = ({ data }) => {
                     <SearchIcon />
                 </div>
                 <Link
-                    href={"/products/add"}
+                    href={"/categories/add"}
                     className="rounded-md   shadow-md bg-white flex items-center px-5 ml-2"
                 >
                     <AddIcon />
@@ -53,14 +53,14 @@ const pageBody: FC<Props> = ({ data }) => {
                         <div className=" p-5 flex items-center" key={index}>
                             <img
                                 className="max-w-[150px] rounded-md"
-                                src={`http://localhost:8000/${product.imageUrl}`}
+                                src={`${process.env.URL}/${product.imageUrl}`}
                                 alt={product.title}
                             />
                             <div className="flex flex-col ml-5 mr-auto">
                                 <h1 className="font-semibold">{product.title}</h1>
                             </div>
 
-                            <DropdownMenu  _id={product?._id} />
+                            <DropdownMenu _id={product?._id} />
                         </div>
                     ) : (
                         ""

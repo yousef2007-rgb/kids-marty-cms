@@ -3,13 +3,13 @@ import PageBody from './pageBody'
 import axios from "axios"
 
 const getData = async (_id: string) => {
-    const categories = await axios.get("http://localhost:8000/api/categories");
-    const brands = await axios.get("http://localhost:8000/api/brands");
-    const product = await axios.get(`http://localhost:8000/api/products/${_id}`)
+    const categories = await axios.get(`${process.env.URL}/api/categories`);
+    const brands = await axios.get(`${process.env.URL}/api/brands`);
+    const product = await axios.get(`${process.env.URL}/api/products/${_id}`)
     return {
         categories: categories.data,
         brands: brands.data,
-        product:product.data
+        product: product.data
     };
 }
 

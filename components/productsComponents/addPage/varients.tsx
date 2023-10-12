@@ -67,7 +67,7 @@ const Varients: FC<Props> = ({ formData, setFormData }) => {
             imageUrl: "",
             imagesUrls: []
         });
-        setVarientsFormVisability(true)
+        setVarientsFormVisability(false)
     }
 
     console.log(currentVarient)
@@ -215,12 +215,12 @@ const Varients: FC<Props> = ({ formData, setFormData }) => {
                         />
                         {/*
                         <div className='flex items- flex-col'>
-                            <img className="max-w-[150px] rounded-md" src={`http://localhost:8000/${varient.imageUrl}`} />
+                            <img className="max-w-[150px] rounded-md" src={`${process.env.URL}/${varient.imageUrl}`} />
                             <button className='bg-blue-500 max-w-[150px] rounded-md my-2 text-white font-semibold capitalize h-fit p-2'>change image</button>
                         </div>
                         */}
 
-                        <VarientsMedia index={index} setVarient={setCurrentVarient} setFormData={setFormData} formData={formData} defaultImage={`http://localhost:8000/${varient.imageUrl}`} varientData={currentVarient} />
+                        <VarientsMedia index={index} setVarient={setCurrentVarient} setFormData={setFormData} formData={formData} defaultImage={`${process.env.URL}/${varient.imageUrl}`} varientData={currentVarient} />
                     </div>
                 ))}
             </div>

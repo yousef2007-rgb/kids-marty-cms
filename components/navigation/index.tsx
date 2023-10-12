@@ -17,16 +17,16 @@ export default function index() {
       <Button text="products" link="/products">
         <ProductsIcons />
       </Button>
-      <Button text="categories" link="/">
+      <Button text="categories" link="/categories">
         <CategoiresIconse />
       </Button>
-      <Button text="brands" link="/">
+      <Button text="brands" link="/brands">
         <BrandsIcons />
       </Button>
-      <Button text="orders" link="/">
+      <Button text="orders" link="/orders">
         <OrdersIcons />
       </Button>
-      <Button text="users" link="/">
+      <Button text="users" link="/users">
         <UsersIcons />
       </Button>
     </div>

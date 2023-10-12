@@ -11,7 +11,7 @@ import { Category, Brand } from '@/types/productsTypes';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-const ProductForm = (props: {categories: Category[], brands:Brand[]}) => {
+const ProductForm = (props: { categories: Category[], brands: Brand[] }) => {
     const router = useRouter();
     const [formData, setFormData] = useState<Product>({
         title: '',
@@ -43,7 +43,7 @@ const ProductForm = (props: {categories: Category[], brands:Brand[]}) => {
         e.preventDefault();
         const res = await axios.get("/api/auth/login")
         const token: string = res.data;
-        axios.post("http://localhost:8000/api/products", formData, {
+        axios.post(process.env.URL + "/api/products", formData, {
             headers: {
                 "x-web-token": token
             }
@@ -56,7 +56,7 @@ const ProductForm = (props: {categories: Category[], brands:Brand[]}) => {
             <ProductDetails formData={formData} handleInputChange={handleInputChange} />
             <ProductDetailsAr formData={formData} handleInputChange={handleInputChange} />
             <Pricing formData={formData} handleInputChange={handleInputChange} />
-            <Options formData={formData} handleInputChange={handleInputChange} setFormData={setFormData} data={{categories:props.categories, brands:props.brands}} />
+            <Options formData={formData} handleInputChange={handleInputChange} setFormData={setFormData} data={{ categories: props.categories, brands: props.brands }} />
             <Varients formData={formData} setFormData={setFormData} />
             <Media formData={formData} setFormData={setFormData} />
             <button

@@ -12,5 +12,6 @@ export interface Props {
         categories:Category[],
         brands:Brand[]
     }
+    noAdditionalMedia?: boolean;
     index?: number;
 }

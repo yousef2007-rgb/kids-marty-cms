@@ -11,7 +11,7 @@ const media: FC<Props> = ({ formData, setFormData }) => {
     function readFile(file: any) {
         return new Promise(resolve => {
             let myReader = new FileReader();
-            myReader.onloadend = function(e) {
+            myReader.onloadend = function (e) {
                 resolve(myReader.result);
             };
             myReader.readAsDataURL(file);
@@ -28,7 +28,7 @@ const media: FC<Props> = ({ formData, setFormData }) => {
     const handleImageUploadReq = async (e: any) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:8000/api/image", {
+            const res = await axios.post(process.env.URL + "/api/image", {
                 imageData: selectedImage,
                 extension: extension
             })
@@ -61,7 +61,7 @@ const media: FC<Props> = ({ formData, setFormData }) => {
             <div className='flex flex-wrap'>
                 {formData.imagesUrls?.map((imageUrl, index) => (
                     <div className=' rounded-md m-2 relative w-fit bg-gray-100'>
-                        <img className="max-w-[100px] rounded-md" src={`http://localhost:8000/${imageUrl}`} />
+                        <img className="max-w-[100px] rounded-md" src={`${process.env.URL}/${imageUrl}`} />
                         <button className='ml-auto absolute top-0 right-0' onClick={handleImageDelete(index)}> <TrashIcon /> </button>
                     </div>
                 ))}
