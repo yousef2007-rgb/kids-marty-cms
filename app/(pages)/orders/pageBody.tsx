@@ -40,7 +40,7 @@ const pageBody: FC<Props> = ({ data }) => {
             </div>
             <div >
                 {res.map((order: Order, index: number) => (
-                    <div className="[&>*>span]:text-primary rounded-md  shadow-md bg-white [&>*>span]:mx-2 h-fit flex flex-col border-black p-5 my-4 font-bold ">
+                    <div className="[&>*>span]:text-primary rounded-md  shadow-md bg-white [&>*>span]:mx-2 h-fit flex flex-col border-black p-5 my-4 font-bold " key={index}>
                         <h1>
                             Customer Id:<span>{order.user._id}</span>
                         </h1>
@@ -61,20 +61,20 @@ const pageBody: FC<Props> = ({ data }) => {
                             <span>{order.user.location} in {order.user.city}</span>
                         </h4>
                         <div className="flex mt-2">
-                        <Link
-                            className="transition-all hover:text-green-500 bg-green-500 text-white hover:bg-white px-4 py-2 rounded-md my-2 capitalize border-2 border-green-500 w-[50%] mr-2 text-center"
-                            href={`https://wa.me/${order.user.phone}`}
-                            target={"blank"}
-                        >
-                            contact on whatsapp
-                        </Link>
-                        <Link
-                            className="transition-all hover:text-primary bg-primary text-white hover:bg-white px-4 py-2 rounded-md my-2 capitalize border-2 border-primary w-[50%] text-center"
-                            href={`/orders/${order._id}`}
-                            target={"blank"}
-                        >
-                            Details
-                        </Link>
+                            <Link
+                                className="transition-all hover:text-green-500 bg-green-500 text-white hover:bg-white px-4 py-2 rounded-md my-2 capitalize border-2 border-green-500 w-[50%] mr-2 text-center"
+                                href={`https://wa.me/${order.user.phone}`}
+                                target={"blank"}
+                            >
+                                contact on whatsapp
+                            </Link>
+                            <Link
+                                className="transition-all hover:text-primary bg-primary text-white hover:bg-white px-4 py-2 rounded-md my-2 capitalize border-2 border-primary w-[50%] text-center"
+                                href={`/orders/${order._id}`}
+                                target={"blank"}
+                            >
+                                Details
+                            </Link>
                         </div>
                     </div>
                 ))}

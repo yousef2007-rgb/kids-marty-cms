@@ -74,12 +74,12 @@ const media: FC<Props> = ({ formData, index, varientData, setFormData, setVarien
             <div className='flex flex-wrap'>
                 {defaultImage && index != undefined && formData.varients != undefined ?
                     formData.varients[index]?.imagesUrls?.map((imageUrl: string, i: number) => (
-                        <div className=' rounded-md m-2 relative w-fit bg-gray-100'>
+                        <div className=' rounded-md m-2 relative w-fit bg-gray-100' key={i}>
                             <img className="max-w-[100px] rounded-md" src={`${process.env.URL}/${imageUrl}`} />
                             <button className='ml-auto absolute top-0 right-0' onClick={handleImageDelete(i)}> <TrashIcon /> </button>
                         </div>))
                     : varientData?.imagesUrls?.map((imageUrl, index) => (
-                        <div className=' rounded-md m-2 relative w-fit bg-gray-100'>
+                        <div className=' rounded-md m-2 relative w-fit bg-gray-100' key={index}>
                             <img className="max-w-[100px] rounded-md" src={`${process.env.URL}/${imageUrl}`} />
                             <button className='ml-auto absolute top-0 right-0' onClick={handleImageDelete(index)}> <TrashIcon /> </button>
                         </div>))}

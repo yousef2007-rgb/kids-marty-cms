@@ -44,6 +44,9 @@ const productDetails: FC<Props> = ({ formData, handleInputChange, setFormData, d
         setFormData({ ...formData, isPublished: !formData.isPublished })
     };
 
+    const handleInStockChange = () => {
+        setFormData({ ...formData, isInStock: !formData.isInStock })
+    };
     console.log(formData)
 
     return (
@@ -114,6 +117,21 @@ const productDetails: FC<Props> = ({ formData, handleInputChange, setFormData, d
                 ></span>
                 <label className="flex ml-2 items-center space-x-2 cursor-pointer">
                     <span className="block text-gray-700 text-sm font-bold ">Is Published</span>
+                </label>
+            </div>
+
+            <div className='flex items-center my-5 '>
+                <input
+                    type="checkbox"
+                    className="toggle-checkbox cursor-pointer"
+                    checked={formData.isInStock}
+                    onChange={handleInStockChange}
+                />
+                <span
+                    className={`toggle-slider ${formData.isInStock ? 'bg-blue-500' : 'bg-gray-300'}`}
+                ></span>
+                <label className="flex ml-2 items-center space-x-2 cursor-pointer">
+                    <span className="block text-gray-700 text-sm font-bold ">Is In Stock</span>
                 </label>
             </div>
             <div className='bg-gray-200 p-5 rounded-md'>

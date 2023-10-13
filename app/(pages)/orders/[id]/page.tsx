@@ -35,11 +35,11 @@ const Order = async ({ params }: { params: { id: string } }) => {
                 <div className="flex flex-col w-full my-4">
                     <h1>Items:</h1>
                     {order.products.map((item, index) => (
-                        <div className="flex items-center shadow-md my-2 flex-col w-fit max-w-xs rounded-md p-2">
+                        <div className="flex items-center shadow-md my-2 flex-col w-fit max-w-xs rounded-md p-2" key={index}>
                             <img className="max-w-[100px] rounded-md my-2" src={`${process.env.URL}/${item.imageUrl}`} />
                             <div className="flex flex-col mx-4 text-center w-full">
                                 <h1 className="my-2">{item.title}</h1>
-                                <h1 className="text-gray-900 my-2">{item.price}JOD * {item.quantity} = {item.price*item.quantity}</h1>
+                                <h1 className="text-gray-900 my-2">{item.price}JOD * {item.quantity} = {item.price * item.quantity}</h1>
                             </div>
                         </div>
                     ))}

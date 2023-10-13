@@ -93,7 +93,7 @@ const Varients: FC<Props> = ({ formData, setFormData }) => {
                             onChange={handleVarientInputChange}
                             required
                             maxLength={100}
-                            minLength={10}
+
                             className="border rounded w-full py-2 px-3 mb-2 outline-none"
                         />
 
@@ -120,7 +120,7 @@ const Varients: FC<Props> = ({ formData, setFormData }) => {
                             onChange={handleVarientInputChange}
                             required
                             maxLength={100}
-                            minLength={10}
+
                             className="border rounded w-full py-2 px-3 mb-2 outline-none"
                         />
 
@@ -172,7 +172,7 @@ const Varients: FC<Props> = ({ formData, setFormData }) => {
                             value={varient.title}
                             onChange={handleExistingVarientInputChange(index)}
                             maxLength={100}
-                            minLength={10}
+
                             className="border rounded w-full py-2 px-3 mb-2 outline-none"
                         />
 
@@ -198,7 +198,7 @@ const Varients: FC<Props> = ({ formData, setFormData }) => {
                             value={varient.title_ar}
                             onChange={handleExistingVarientInputChange(index)}
                             maxLength={100}
-                            minLength={10}
+
                             className="border rounded w-full py-2 px-3 mb-2 outline-none"
                         />
 

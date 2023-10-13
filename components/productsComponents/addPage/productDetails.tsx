@@ -17,7 +17,7 @@ const productDetails: FC<Props> = ({ formData, handleInputChange }) => {
                 onChange={handleInputChange}
                 required
                 maxLength={100}
-                minLength={10}
+
                 className="border rounded w-full py-2 px-3 mb-2 outline-none"
             />
 

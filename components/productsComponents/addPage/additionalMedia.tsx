@@ -60,7 +60,7 @@ const media: FC<Props> = ({ formData, setFormData }) => {
             </div>
             <div className='flex flex-wrap'>
                 {formData.imagesUrls?.map((imageUrl, index) => (
-                    <div className=' rounded-md m-2 relative w-fit bg-gray-100'>
+                    <div className=' rounded-md m-2 relative w-fit bg-gray-100' key={index}>
                         <img className="max-w-[100px] rounded-md" src={`${process.env.URL}/${imageUrl}`} />
                         <button className='ml-auto absolute top-0 right-0' onClick={handleImageDelete(index)}> <TrashIcon /> </button>
                     </div>

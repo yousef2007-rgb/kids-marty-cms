@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Product, Varient } from "@/types/productsTypes"
 import ProductDetails from "@/components/productsComponents/addPage/productDetails";
 import ProductDetailsAr from "@/components/productsComponents/addPage/productDetailsAr";
@@ -11,26 +11,33 @@ import { Category, Brand } from '@/types/productsTypes';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-const ProductForm = (props: { categories: Category[], brands: Brand[] }) => {
+interface Props {
+    categories: Category[];
+    brands: Brand[];
+    product: Product;
+}
+
+const ProductForm: FC<Props> = ({ categories, brands, product }) => {
     const router = useRouter();
     const [formData, setFormData] = useState<Product>({
-        title: '',
-        discription: '',
-        lable: '',
-        keywords: '',
-        title_ar: '',
-        discription_ar: "",
-        imagesUrls: [],
-        online_price: 0,
-        wholesale_price: 0,
-        discount: 0,
-        imageUrl: '',
-        category: props.categories[0]._id,
-        brand: props.brands[0]._id,
-        isPublished: true,
-        ageRange: '0-2',
-        varients: [],
-        dimensions: [],
+        title: product.title,
+        discription: product.discription,
+        lable: product.lable,
+        keywords: product.keywords,
+        title_ar: product.title_ar,
+        discription_ar: product.discription_ar,
+        imagesUrls: product.imagesUrls,
+        online_price: product.online_price,
+        wholesale_price: product.wholesale_price,
+        discount: product.discount,
+        imageUrl: product.imageUrl,
+        category: product.category._id,
+        brand: product.brand._id,
+        isPublished: product.isPublished,
+        isInStock: product.isPublished,
+        ageRange: product.ageRange,
+        varients: product.varients,
+        dimensions: product.dimensions,
     });
 
 
@@ -39,11 +46,11 @@ const ProductForm = (props: { categories: Category[], brands: Brand[] }) => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleFormSubmit = async (e: any) => {
+    const handleFormSubmit = (_id: string | undefined) => async (e: any) => {
         e.preventDefault();
         const res = await axios.get("/api/auth/login")
         const token: string = res.data;
-        axios.post(process.env.URL + "/api/products", formData, {
+        axios.put(`${process.env.URL}/api/products/${_id}`, formData, {
             headers: {
                 "x-web-token": token
             }
@@ -52,18 +59,18 @@ const ProductForm = (props: { categories: Category[], brands: Brand[] }) => {
     }
 
     return (
-        <form onSubmit={handleFormSubmit} className=" mx-auto [&>*]:outline-none w-full flex flex-col">
+        <form onSubmit={handleFormSubmit(product?._id)} className=" mx-auto [&>*]:outline-none w-full flex flex-col">
             <ProductDetails formData={formData} handleInputChange={handleInputChange} />
             <ProductDetailsAr formData={formData} handleInputChange={handleInputChange} />
             <Pricing formData={formData} handleInputChange={handleInputChange} />
-            <Options formData={formData} handleInputChange={handleInputChange} setFormData={setFormData} data={{ categories: props.categories, brands: props.brands }} />
+            <Options formData={formData} handleInputChange={handleInputChange} setFormData={setFormData} data={{ categories: categories, brands: brands }} />
             <Varients formData={formData} setFormData={setFormData} />
-            <Media formData={formData} setFormData={setFormData} />
+            <Media formData={formData} setFormData={setFormData} defaultImage={`${process.env.URL}/${formData.imageUrl}`} />
             <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-                Submit
+                save
             </button>
         </form>
     );

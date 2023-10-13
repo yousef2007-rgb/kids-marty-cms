@@ -14,7 +14,7 @@ export interface Category {
     title_ar: string;
     discription_ar?: string;
     keywords?: string;
-    lable:string;
+    lable: string;
     imageUrl: string;
 }
 
@@ -25,7 +25,7 @@ export interface Brand {
     title_ar: string;
     discription_ar?: string;
     keywords?: string;
-    lable:string;
+    lable: string;
     imageUrl: string;
 }
 
@@ -38,7 +38,7 @@ export interface Item {
 }
 
 
-export interface User  {
+export interface User {
     username: string;
     email: string;
     password: string;
@@ -50,13 +50,13 @@ export interface User  {
     _id: string;
 }
 export interface Order {
-    _id:string;
+    _id: string;
     user: User;
     products: Item[];
 }
 
 export interface Product {
-    _id?:string;
+    _id?: string;
     title: string;
     discription: string;
     lable: string;
@@ -68,9 +68,10 @@ export interface Product {
     wholesale_price: number;
     discount: number;
     imageUrl: string;
-    category: string;
-    brand: string;
+    category: string | Category;
+    brand: string | Brand;
     isPublished: boolean;
+    isInStock: boolean;
     ageRange: "0-2" | "2-6" | "7-12" | "13-up";
     varients?: Varient[];
     dimensions?: string[];
