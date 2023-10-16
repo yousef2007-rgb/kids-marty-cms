@@ -1,7 +1,5 @@
 "use client";
 import React, { FC, useState } from "react";
-import CheckIcon from "@/public/assets/icons/checkIcon";
-import CloseIcon from "@/public/assets/icons/closeIcon";
 import AddIcon from "@/public/assets/icons/addIcon";
 import { Brand } from "@/types/productsTypes";
 import SearchIcon from "@/public/assets/icons/searchIcon";
@@ -25,7 +23,7 @@ const pageBody: FC<Props> = ({ data }) => {
             product.discription.toLowerCase().includes(inputValue.toLowerCase()) ||
             product.discription_ar?.includes(inputValue)
     });
-    console.log(res)
+
     return (
         <>
             <div className="flex w-full">

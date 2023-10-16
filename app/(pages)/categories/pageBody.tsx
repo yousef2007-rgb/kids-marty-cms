@@ -1,7 +1,5 @@
 "use client";
 import React, { FC, useState } from "react";
-import CheckIcon from "@/public/assets/icons/checkIcon";
-import CloseIcon from "@/public/assets/icons/closeIcon";
 import AddIcon from "@/public/assets/icons/addIcon";
 import { Category } from "@/types/productsTypes";
 import SearchIcon from "@/public/assets/icons/searchIcon";
@@ -14,9 +12,11 @@ interface Props {
 
 const pageBody: FC<Props> = ({ data }) => {
     const [inputValue, setInputValue] = useState("");
+
     const handleChange = (event: any) => {
         setInputValue(event.target.value);
     };
+
     const res = data.filter((product: Category, index: number) => {
         return inputValue == ""
             ? true
@@ -25,7 +25,7 @@ const pageBody: FC<Props> = ({ data }) => {
             product.discription.toLowerCase().includes(inputValue.toLowerCase()) ||
             product.discription_ar?.includes(inputValue)
     });
-    console.log(res)
+
     return (
         <>
             <div className="flex w-full">
@@ -35,8 +35,8 @@ const pageBody: FC<Props> = ({ data }) => {
                         placeholder="Search for a Category"
                         type="text"
                         onChange={handleChange}
-                        name=""
-                        id=""
+                        name="search"
+                        id="search"
                     />
                     <SearchIcon />
                 </div>

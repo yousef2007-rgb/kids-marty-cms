@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Header from "@/components/header";
 import { Cairo } from "next/font/google";
 import Navigation from "@/components/navigation";
+import Loading from "./loading";
+import { Suspense } from "react";
 
 const roboto: any = Cairo({
   subsets: ["latin"],
@@ -18,16 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={`min-h-screen bg-gradient-page flex flex-col font-sans`}
-      >
+    <>
         <Header />
         <div className="flex-1 flex w-[90vw] py-5 max-w-5xl mx-auto">
           <Navigation />
+          <Suspense fallback={<Loading />} >
           <div className="flex-1 flex flex-col ml-5 py-3 ">{children}</div>
+          </Suspense>
         </div>
-      </body>
-    </html>
+    </>
   );
 }

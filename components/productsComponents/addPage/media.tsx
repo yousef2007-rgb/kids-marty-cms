@@ -45,7 +45,7 @@ export const media: FC<Props> = ({ formData, setFormData, defaultImage, noAdditi
             <h1 className='mb-5 text-gray-700 font-semibold'>Media</h1>
             <div className='flex items-center'>
                 {selectedImage ? <img src={selectedImage} alt="Uploaded" className='max-w-[100px] rounded-md mr-2' /> : ""}
-                <input className="" type='file' accept='image/*' onChange={handleImageUpload} />
+                <input className="max-w-[100px]" type='file' accept='image/*' onChange={handleImageUpload} />
                 {selectedImage ? <button onClick={handleImageUploadReq} className='bg-blue-400 text-white p-2 rounded-md font-semibold ml-auto'>Upload</button> : ""}
             </div>
 

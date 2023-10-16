@@ -28,7 +28,7 @@ const getData = async () => {
   const token: any = cookies().get("token");
 
   const data = await axios.get(process.env.URL + "/api/users/me", {
-    headers: {
+    headers:{
       "x-web-token": token.value,
     },
   });
@@ -41,12 +41,13 @@ export default async function Home() {
   const data: User = res.data;
 
   return (
-    <main className="flex bg-white rounded-md p-5 font-semibold flex-col flex-1 w-full">
-      <p className="my-2 font-sans">Name: {data?.username}</p>
-      <p className="my-2">Email: {data?.email}</p>
-      <p className="my-2">city: {data?.city}</p>
-      <p className="my-2">location: {data?.location}</p>
-      <p className="my-2">phone: {data?.phone}</p>
+    <main className="flex capitalize bg-white rounded-md justify-evenly text-gray-700 p-5 font-semibold flex-col flex-1 w-full">
+      <p className="my-2 font-sans">Name: <span className="text-primary">{data?.username}</span></p>
+      <p className="my-2">Email: <span className="text-primary">{data?.email}</span></p>
+      <p className="my-2">city: <span className="text-primary">{data?.city}</span></p>
+      <p className="my-2">location: <span className="text-primary">{data?.location}</span></p>
+      <p className="my-2">phone: <span className="text-primary">{data?.phone}</span></p>
+      <p className="my-2">Age: <span className="text-primary">{data?.age}</span></p>
       <Signout />
     </main>
   );

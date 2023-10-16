@@ -13,9 +13,9 @@ export default function signout() {
       onClick={() => {
         singOut().then(() => router.push("/signin"));
       }}
-      className=" p-2 capitalize text-center w-full mx-auto bg-primary rounded-md  text-white font-semibold -2 -primary hover:bg-white hover:text-primary my-2 "
+      className=" p-2  capitalize text-center w-full mx-auto bg-primary rounded-md  text-white font-semibold border-2 border-primary hover:bg-white hover:text-primary my-2 "
     >
-      SignOut
+      Signout
     </button>
   );
 }
