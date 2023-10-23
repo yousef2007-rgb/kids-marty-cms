@@ -38,7 +38,7 @@ const DropdownMenu: FC<Props> = ({ isPublished, _id }) => {
 
     };
     return (
-        <div className="relative ml-5">
+        <div className="relative">
             <button
                 onClick={toggleMenu}
                 className="flex items-center p-2 bg-gray-200 rounded-full"

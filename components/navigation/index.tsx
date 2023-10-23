@@ -6,11 +6,12 @@ import CategoiresIconse from "@/public/assets/icons/categoiresIconse";
 import BrandsIcons from "@/public/assets/icons/brandsIcons";
 import OrdersIcons from "@/public/assets/icons/ordersIcons";
 import UsersIcons from "@/public/assets/icons/usersIcons";
+import UploadIcon from "@/public/assets/icons/uploadIcon";
 import Button from "./button";
 
 export default function index() {
   return (
-    <div className="flex w-fit flex-col flex-wrap  capitalize text-2xl">
+    <div className="flex w-fit sm:bg-transparent sbg-white flex-col flex-wrap capitalize text-2xl">
       <Button text="home" link="/">
         <HomeIcon />
       </Button>
@@ -28,6 +29,9 @@ export default function index() {
       </Button>
       <Button text="users" link="/users">
         <UsersIcons />
+      </Button>
+      <Button text="upload" link="/upload">
+        <UploadIcon />
       </Button>
     </div>
   );

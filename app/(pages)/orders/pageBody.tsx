@@ -60,18 +60,17 @@ const pageBody: FC<Props> = ({ data }) => {
                             Customer Location:
                             <span>{order.user.location} in {order.user.city}</span>
                         </h4>
-                        <div className="flex mt-2">
+                        <div className="flex sm:flex-row flex-col mt-2">
                             <Link
-                                className="transition-all hover:text-green-500 bg-green-500 text-white hover:bg-white px-4 py-2 rounded-md my-2 capitalize border-2 border-green-500 w-[50%] mr-2 text-center"
+                                className="transition-all hover:text-green-500 bg-green-500 text-white hover:bg-white px-4 py-2 rounded-md my-2 capitalize border-2 border-green-500 w-full sm:w-[50%] mr-2 text-center"
                                 href={`https://wa.me/${order.user.phone}`}
                                 target={"blank"}
                             >
                                 contact on whatsapp
                             </Link>
                             <Link
-                                className="transition-all hover:text-primary bg-primary text-white hover:bg-white px-4 py-2 rounded-md my-2 capitalize border-2 border-primary w-[50%] text-center"
+                                className="transition-all hover:text-primary bg-primary text-white hover:bg-white px-4 py-2 rounded-md my-2 capitalize border-2 border-primary w-full sm:w-[50%] text-center"
                                 href={`/orders/${order._id}`}
-                                target={"blank"}
                             >
                                 Details
                             </Link>

@@ -59,7 +59,7 @@ const ProductForm: FC<Props> = ({ categories, brands, product }) => {
     }
 
     return (
-        <form onSubmit={handleFormSubmit(product?._id)} className=" mx-auto [&>*]:outline-none w-full flex flex-col">
+        <form onSubmit={handleFormSubmit(product?._id)} className=" mx-auto [&>*]:outline-none flex-1 flex flex-col">
             <ProductDetails formData={formData} handleInputChange={handleInputChange} />
             <ProductDetailsAr formData={formData} handleInputChange={handleInputChange} />
             <Pricing formData={formData} handleInputChange={handleInputChange} />
@@ -68,7 +68,7 @@ const ProductForm: FC<Props> = ({ categories, brands, product }) => {
             <Media formData={formData} setFormData={setFormData} defaultImage={`${process.env.URL}/${formData.imageUrl}`} />
             <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
                 save
             </button>

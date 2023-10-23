@@ -10,7 +10,6 @@ export default async function Home() {
                 <Navigation />
                 <div className="flex-1 flex flex-col ml-5 py-3 ">
                     <main className="flex flex-col justify-center flex-1 h-full rounded-md  shadow-md bg-white">
-                        {" "}
                         <div className="text-center">
                             <h1 className="text-3xl font-bold mb-4">Welcome to Our CMS</h1>
                             <p className="text-lg text-gray-700 mb-8">

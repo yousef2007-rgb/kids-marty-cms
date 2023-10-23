@@ -52,7 +52,7 @@ const pageBody: FC<Props> = ({ data }) => {
                     res.length != 0 ? (
                         <div className=" p-5 flex items-center" key={index}>
                             <img
-                                className="max-w-[150px] rounded-md"
+                                className="max-w-[150px] w-[25%] rounded-md"
                                 src={`${process.env.URL}/${product.imageUrl}`}
                                 alt={product.title}
                             />

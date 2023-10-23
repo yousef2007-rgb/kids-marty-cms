@@ -48,24 +48,24 @@ const pageBody: FC<Props> = ({ data }) => {
                     <AddIcon />
                 </Link>
             </div>
-            <div className="rounded-md  shadow-md bg-white my-5">
+            <div className="rounded-md overflow-y-auto max-h-[385px] overflow-x-hidden  shadow-md bg-white my-5">
                 {res.map((product: Product, index: number) =>
                     res.length != 0 ? (
                         <div className=" p-5 flex items-center" key={index}>
                             <img
-                                className="max-w-[150px] rounded-md"
+                                className="max-w-[150px] w-[25%] rounded-md"
                                 src={`${process.env.URL}/${product.imageUrl}`}
                                 alt={product.title}
                             />
-                            <div className="flex flex-col mx-5">
+                            <div className="flex flex-1 flex-col mx-5">
                                 <h1 className="font-semibold">{product.title}</h1>
                                 <p className="text-gray-600">Label: {product.lable}</p>
                             </div>
 
-                            <div className="ml-auto flex">
-                                {product.isPublished ? <CheckIcon /> : <CloseIcon />}
+                            <div className="ml-auto items-center sm:flex-row flex-col flex flex-wrap h-full">
+                                <snap className="sm:mr-2 mr-0 mb-2">{product.isPublished ? <CheckIcon /> : <CloseIcon />}</snap>
+                                <DropdownMenu isPublished={product.isPublished} _id={product?._id} />
                             </div>
-                            <DropdownMenu isPublished={product.isPublished} _id={product?._id} />
                         </div>
                     ) : (
                         ""

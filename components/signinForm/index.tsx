@@ -33,7 +33,11 @@ export default function index() {
             await axios.post("/api/auth/login", payload);
             router.push("/");
         } catch (err: any) {
-            setErrorMessage(err.response.data);
+            if (err.response.status == 400) {
+                setErrorMessage(err.response.data);
+            } else {
+                setErrorMessage(`${err.response.data} try again`)
+            }
         }
     };
 
