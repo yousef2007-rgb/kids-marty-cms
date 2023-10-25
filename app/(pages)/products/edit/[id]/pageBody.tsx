@@ -50,12 +50,15 @@ const ProductForm: FC<Props> = ({ categories, brands, product }) => {
         e.preventDefault();
         const res = await axios.get("/api/auth/login")
         const token: string = res.data;
-        axios.put(`${process.env.URL}/api/products/${_id}`, formData, {
+        console.log(`${process.env.URL}/api/products/${_id}`)
+        const products = await axios.put(`${process.env.URL}/api/products/${_id}`, formData, {
             headers: {
                 "x-web-token": token
             }
-        }).then(() => router.push("/products"));
-
+        })
+        if(products){
+            router.push("/products")
+        }
     }
 
     return (

@@ -48,7 +48,8 @@ const ProductForm = (props: { categories: Category[], brands: Brand[] }) => {
             headers: {
                 "x-web-token": token
             }
-        }).then(() => router.push("/products"));
+        }).then(() => router.push("/products"))
+            .catch(err => console.log(err))
 
     }
 
