@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC, Suspense, useState } from "react";
 import AddIcon from "@/public/assets/icons/addIcon";
 import { Category } from "@/types/productsTypes";
 import SearchIcon from "@/public/assets/icons/searchIcon";
@@ -47,6 +47,7 @@ const pageBody: FC<Props> = ({ data }) => {
                     <AddIcon />
                 </Link>
             </div>
+            <Suspense fallback={<h1></h1>}>
             <div className="rounded-md  shadow-md bg-white my-5">
                 {res.map((product: Category, index: number) =>
                     res.length != 0 ? (
@@ -67,6 +68,7 @@ const pageBody: FC<Props> = ({ data }) => {
                     )
                 )}
             </div>
+            </Suspense>
         </>
     );
 };

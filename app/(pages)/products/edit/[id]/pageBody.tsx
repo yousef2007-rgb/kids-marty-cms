@@ -56,13 +56,13 @@ const ProductForm: FC<Props> = ({ categories, brands, product }) => {
                 "x-web-token": token
             }
         })
-        if(products){
+        if (products) {
             router.push("/products")
         }
     }
 
     return (
-        <form onSubmit={handleFormSubmit(product?._id)} className=" mx-auto [&>*]:outline-none flex-1 flex flex-col">
+        <form onSubmit={handleFormSubmit(product?._id)} className=" mx-auto [&>*]:outline-none flex-1 flex w-full flex-col">
             <ProductDetails formData={formData} handleInputChange={handleInputChange} />
             <ProductDetailsAr formData={formData} handleInputChange={handleInputChange} />
             <Pricing formData={formData} handleInputChange={handleInputChange} />

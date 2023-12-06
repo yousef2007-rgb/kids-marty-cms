@@ -59,7 +59,7 @@ const DropdownMenu: FC<Props> = ({ isPublished, _id }) => {
                 </svg>
             </button>
             {isOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 py-2 bg-white border border-gray-300 rounded shadow-lg z-30 text-left">
+                <div className="absolute z-full top-full left-1/2 -translate-x-1/2 mt-2 py-2 bg-white border border-gray-300 rounded shadow-lg z-30 text-left">
                     <Link
                         href={`/products/edit/${_id}`}
                         className="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full"
