@@ -56,7 +56,6 @@ export interface Order {
 }
 
 export interface Product {
-    _id?: string;
     title: string;
     discription: string;
     lable: string;
@@ -75,4 +74,8 @@ export interface Product {
     ageRange: "0-2" | "2-6" | "7-12" | "13-up";
     varients?: Varient[];
     dimensions?: string[];
+}
+
+export interface ProductWithId extends Product {
+    _id: string;
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import PageBody from './pageBody'
 import axios from "axios"
+import { Brand, Category } from '@/types/productsTypes';
 
 const getData = async (_id: string) => {
     const categories = await axios.get(`${process.env.URL}/api/categories`);

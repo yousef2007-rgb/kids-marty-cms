@@ -11,6 +11,7 @@ const productDetails: FC<Props> = ({ formData, handleInputChange }) => {
             </label>
             <input
                 type="number"
+                step="any"
                 id="online_price"
                 name="online_price"
                 value={formData.online_price}
@@ -26,6 +27,7 @@ const productDetails: FC<Props> = ({ formData, handleInputChange }) => {
             </label>
             <input
                 type="number"
+                step="any"
                 id="wholesale_price"
                 name="wholesale_price"
                 value={formData.wholesale_price}
@@ -41,6 +43,7 @@ const productDetails: FC<Props> = ({ formData, handleInputChange }) => {
             </label>
             <input
                 type="number"
+                step="any"
                 id="discount"
                 name="discount"
                 value={formData.discount}
